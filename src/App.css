@@ -1,0 +1,46 @@
+.container{
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  flex : 1;
+}
+.nav{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding : 10px;
+}
+img{
+  padding-right: 5px;
+}
+.fcontainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.fcontainer button{
+  padding: 10px;
+  margin: 10px;
+  background-color: white;
+  color: darkmagenta;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  border: 1px solid darkmagenta;
+  font-size: 20px;
+}
+.fcontainer button:active{
+  color: white;
+  background-color: darkmagenta;
+  border: 1px solid darkmagenta;
+}
+.footer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.f1{
+  font-size: 22px;
+}
