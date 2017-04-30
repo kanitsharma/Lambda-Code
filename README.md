@@ -4,10 +4,13 @@ Powerful and lightweight javascript code editor with the functionality of execut
 
 ## Features
 
--Lightweight
--Autocomplete
--Themes
--Code Execution
+### Lightweight
+### Autocomplete
+### Themes
+### Code Execution
+### Mobile Support
+
+## Support for other languages also coming soon... :)
 
 ## Installing
 
