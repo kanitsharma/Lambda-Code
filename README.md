@@ -4,11 +4,11 @@ Powerful and lightweight javascript code editor with the functionality of execut
 
 ## Features
 
-### Lightweight
-### Autocomplete
-### Themes
-### Code Execution
-### Mobile Support
+#### Lightweight
+#### Autocomplete
+#### Themes
+#### Code Execution
+#### Mobile Support
 
 ## Support for other languages also coming soon... :)
 
