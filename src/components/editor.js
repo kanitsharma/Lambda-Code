@@ -34,7 +34,7 @@ const Editor=props => {
       enableBasicAutocompletion={true}
       editorProps={{$blockScrolling: true}}
       wrapEnabled={true}
-      onFocus = {empty}
+      onFocus={empty}
     />
   )
 }

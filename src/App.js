@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      value:"/*Enter Your Javascript Code. \nUse functions like alert,prompt or console.log to check the outputs. \nClick the Execute Button to execute your code. \nCheck gutter for linting*/",
+      value:"/*Enter Your Javascript Code. \nUse functions like alert,prompt or console.log to check the outputs. \nClick the Execute Button to execute your code. \nCheck gutter for linting. \nYour code will be automatically transpiled to es5 when your execute it.*/",
       theme:"ambiance",
       change:true
     }
@@ -16,11 +16,22 @@ class App extends Component {
     this.execute = this.execute.bind(this)
     this.changetheme = this.changetheme.bind(this)
     this.empty = this.empty.bind(this)
+    this.transpile = this.transpile.bind(this)
+    this.evalit = this.evalit.bind(this)
   }
   onchange(code){
     this.setState({ value : code })
   }
+  transpile(value , callback){
+    let code = window.Babel.transform(value, {presets:['es2015']}).code
+    callback(code)
+  }
   execute(){
+    this.transpile(this.state.value, (code) => {
+        this.setState({ value : code } , this.evalit)
+    })
+  }
+  evalit = () => {
     eval(this.state.value)
   }
   changetheme(value){
