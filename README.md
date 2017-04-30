@@ -2,6 +2,12 @@
 
 Powerful and lightweight javascript code editor with the functionality of executing the code in browser itself.
 
+## Features
+
+-Lightweight
+-Autocomplete
+-Themes
+-Code Execution
 
 ## Installing
 
