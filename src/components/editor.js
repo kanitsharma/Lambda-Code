@@ -18,6 +18,9 @@ import 'brace/theme/solarized_dark';
 import 'brace/theme/solarized_light';
 
 const Editor=props => {
+  const empty = () => {
+    props.empty()
+  }
   return(
     <AceEditor
       className="AceEditor"
@@ -27,11 +30,11 @@ const Editor=props => {
       fontSize={20}
       value={props.value}
       onChange={props.onchange}
-      focus={true}
       enableLiveAutocompletion={true}
       enableBasicAutocompletion={true}
       editorProps={{$blockScrolling: true}}
       wrapEnabled={true}
+      onFocus = {empty}
     />
   )
 }

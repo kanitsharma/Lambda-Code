@@ -2,7 +2,7 @@ import React from 'react';
 import Logo from './lambda.png'
 
 const Toolbar=props => {
-  var theme = () => {
+  const theme = () => {
     var select = document.getElementById( 'select' );
     props.changetheme(select.options[ select.selectedIndex ].value)
   }

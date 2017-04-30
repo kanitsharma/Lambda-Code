@@ -8,12 +8,14 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      value:"//Enter Your Javascript Code. \n//Use functions like alert,prompt or console.log to check the outputs. \n//Click the Execute Button to execute your code",
-      theme:"ambiance"
+      value:"/*Enter Your Javascript Code. \nUse functions like alert,prompt or console.log to check the outputs. \nClick the Execute Button to execute your code. \nCheck gutter for linting*/",
+      theme:"ambiance",
+      change:true
     }
     this.onchange = this.onchange.bind(this)
     this.execute = this.execute.bind(this)
     this.changetheme = this.changetheme.bind(this)
+    this.empty = this.empty.bind(this)
   }
   onchange(code){
     this.setState({ value : code })
@@ -24,12 +26,18 @@ class App extends Component {
   changetheme(value){
     this.setState({ theme : value })
   }
+  empty(){
+    if(this.state.change === true){
+      this.setState({ value:'' })
+      this.setState({ change:false })
+    }
+  }
   render() {
     return (
         <div className="container">
           <Toolbar changetheme={this.changetheme}/>
           <div className="center">
-            <Editor value={this.state.value} onchange={this.onchange} theme={this.state.theme}/>
+            <Editor value={this.state.value} onchange={this.onchange} theme={this.state.theme} empty={this.empty}/>
           </div>
           <div >
             <Footer execute={this.execute}/>
