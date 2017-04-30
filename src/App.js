@@ -9,9 +9,11 @@ class App extends Component {
     super(props)
     this.state = {
       value:"//Enter Your Javascript Code. \n//Use functions like alert,prompt or console.log to check the outputs. \n//Click the Execute Button to execute your code",
+      theme:"ambiance"
     }
     this.onchange = this.onchange.bind(this)
     this.execute = this.execute.bind(this)
+    this.changetheme = this.changetheme.bind(this)
   }
   onchange(code){
     this.setState({ value : code })
@@ -19,12 +21,15 @@ class App extends Component {
   execute(){
     eval(this.state.value)
   }
+  changetheme(value){
+    this.setState({ theme : value })
+  }
   render() {
     return (
         <div className="container">
-          <Toolbar/>
+          <Toolbar changetheme={this.changetheme}/>
           <div className="center">
-            <Editor value={this.state.value} onchange={this.onchange}/>
+            <Editor value={this.state.value} onchange={this.onchange} theme={this.state.theme}/>
           </div>
           <div >
             <Footer execute={this.execute}/>

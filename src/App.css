@@ -7,11 +7,18 @@
 .nav{
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: flex-end;
   padding : 10px;
 }
-img{
-  padding-right: 5px;
+.pull-right{
+  display: flex;
+  margin-right: auto;
+  flex-direction: row;
+  align-items: center;
+  font-size: 20px;;
+}
+.pull-right img{
+  margin-right: 15px;
 }
 .fcontainer{
   display: flex;
@@ -20,20 +27,36 @@ img{
   justify-content: center;
 }
 .fcontainer button{
-  padding: 10px;
   margin: 10px;
+  padding: 11px;
+  font-weight: bold;
   background-color: white;
-  color: darkmagenta;
+  color: black;
   border: none;
   outline: none;
-  border-radius: 15px;
-  border: 1px solid darkmagenta;
+  border: 3px solid black;
   font-size: 20px;
+}
+.picker{
+    padding: 10px;
+    margin:5px;
+    font-weight: bold;
+    background-color: white;
+    color: black;
+    outline: none;
+    border: 3px solid black;
+    font-size: 20px;
+}
+.picker option{
+    font-size: 15px;
+    font-weight : lighter;
+    background-color: white;
+    color: black;
 }
 .fcontainer button:active{
   color: white;
-  background-color: darkmagenta;
-  border: 1px solid darkmagenta;
+  background-color: black;
+  border: 3px solid black;
 }
 .footer{
   display: flex;
