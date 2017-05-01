@@ -11,7 +11,7 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      value:"/*Enter Your Javascript Code. \nUse functions like alert,prompt or console.log to check the outputs. \nClick the Execute Button to execute your code. \nCheck gutter for linting. \nYour code will be automatically transpiled to es5 when your execute it. \nYour will be synchronized to the realtime database \nIf reloading please wait for the code to load */",
+      value:"/*Enter Your Javascript Code. \nUse functions like alert,prompt or console.log to check the outputs. \nClick the Execute Button to execute your code. \nCheck gutter for linting. \nYour code will be automatically transpiled to es5 when you execute it. \nYour will be synchronized to the realtime database \nPlease wait for the code to load \nClick share to generate unique id and share it to friends to access real time data sharing and \nEnter the unique id to start synchronizing code code\nClick Stop to stop sharing data online*/",
       theme:"ambiance",
       change:true,
     }

@@ -15,7 +15,7 @@ const Footer = props => {
         <form action="#" onSubmit={handle}>
         <input type="text" id="gg" placeholder="Enter Key" />
         </form>
-        <button onClick={props.reset} >Stop Code Sharing</button>
+        <button onClick={props.reset} >Stop RealTime</button>
       </div>
       <div className="footer">
         <img src={Heart} height="50" width="50" alt="Functional Programmer"/>
