@@ -83,6 +83,20 @@
   align-items: center;
   justify-content: center;
 }
+#gg{
+  margin: 10px;
+  padding: 11px;
+  font-weight: bold;
+  background-color: white;
+  color: black;
+  border: none;
+  outline: none;
+  border: 3px solid black;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+}
 .f1{
   font-family: 'Love Ya Like A Sister', cursive;
   font-size: 22px;

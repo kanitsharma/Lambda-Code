@@ -21,13 +21,13 @@ class App extends Component {
     this.empty = this.empty.bind(this)
     this.transpile = this.transpile.bind(this)
     this.evalit = this.evalit.bind(this)
+    this.update = this.update.bind(this)
+    this.share = this.share.bind(this)
+    this.realtime = this.realtime.bind(this)
+    this.reset = this.reset.bind(this)
   }
   componentWillMount(){
-    if(localStorage.uid){
-      firebase.database().ref().child('users/'+localStorage.uid).once('value' , snap => {
-        this.setState({ value : snap.val().value , change : snap.val().change })
-      })
-    }
+    this.update()
   }
   componentDidMount(){
     if(!localStorage.uid){
@@ -47,6 +47,27 @@ class App extends Component {
       }.bind(this));
     }
   }
+  update(){
+    if(localStorage.uid){
+      firebase.database().ref().child('users/'+localStorage.uid).on('value' , snap => {
+        this.setState({ value : snap.val().value , change : snap.val().change })
+      })
+    }
+    if(localStorage.uid){
+      firebase.database().ref().child('users/'+localStorage.uid).on('value' , snap => {
+        this.setState({ value : snap.val().value , change : snap.val().change })
+      })
+    }
+  }
+  share(){
+    alert(`Share this ${localStorage.uid}`)
+    location.reload()
+  }
+  realtime(key){
+    localStorage.uid=key
+    this.update()
+    location.reload()
+  }
   onchange(code){
     firebase.database().ref().child('users/'+localStorage.uid+'/value').set(code)
     this.setState({ value : code })
@@ -59,6 +80,10 @@ class App extends Component {
     this.transpile(this.state.value, (code) => {
         this.setState({ value : code } , this.evalit)
     })
+  }
+  reset(){
+    localStorage.removeItem('uid')
+    location.reload()
   }
   evalit = (code = this.state) => {
     setTimeout(()=>{
@@ -82,7 +107,7 @@ class App extends Component {
             <Editor value={this.state.value} onchange={this.onchange} theme={this.state.theme} empty={this.empty}/>
           </div>
           <div >
-            <Footer execute={this.execute}/>
+            <Footer execute={this.execute} share={this.share} realtime={this.realtime} reset={this.reset} rtrender={this.state.rtrender}/>
           </div>
         </div>
     );
