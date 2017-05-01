@@ -11,10 +11,9 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      value:"/*Enter Your Javascript Code. \nUse functions like alert,prompt or console.log to check the outputs. \nClick the Execute Button to execute your code. \nCheck gutter for linting. \nYour code will be automatically transpiled to es5 when your execute it.*/",
+      value:"/*Enter Your Javascript Code. \nUse functions like alert,prompt or console.log to check the outputs. \nClick the Execute Button to execute your code. \nCheck gutter for linting. \nYour code will be automatically transpiled to es5 when your execute it. \nYour will be synchronized to the realtime database \nIf reloading please wait for the code to load */",
       theme:"ambiance",
       change:true,
-      uid : '',
     }
     this.onchange = this.onchange.bind(this)
     this.execute = this.execute.bind(this)
@@ -22,46 +21,33 @@ class App extends Component {
     this.empty = this.empty.bind(this)
     this.transpile = this.transpile.bind(this)
     this.evalit = this.evalit.bind(this)
-    this.update = this.update.bind(this)
   }
   componentWillMount(){
-    if(!localStorage.uid){
-      console.log('logging in')
-      firebase.auth().signInAnonymously().catch(function(error) {
-        if(error) console.log(error.message)
-      })
-    }
-    firebase.auth().onAuthStateChanged(function(user) {
-
-      if (user) {
-        localStorage.uid = user.uid
-        this.update()
-      } else {
-        console.log('User logged out')
-
-      }
-      // ...
-    }.bind(this));
-    this.setState({ uid : localStorage.uid })
-
     if(localStorage.uid){
-      if(!localStorage.value){
-        firebase.database().ref().child('users/'+localStorage.uid).set({
-            "value" : this.state.value
-        })
-      }
-      const dbref = firebase.database().ref().child('users/'+localStorage.uid)
-      dbref.on('value' , snap => {
-        this.setState({ value : snap.val().value })
+      firebase.database().ref().child('users/'+localStorage.uid).once('value' , snap => {
+        this.setState({ value : snap.val().value , change : snap.val().change })
       })
     }
-
   }
-  update(){
-
+  componentDidMount(){
+    if(!localStorage.uid){
+      firebase.auth().onAuthStateChanged(function(user) {
+        firebase.auth().signInAnonymously().catch(function(error) {
+          if(error) console.log(error.message)
+        })
+        if (user) {
+          localStorage.uid = user.uid
+          firebase.database().ref().child('users/'+user.uid).set({
+            "value" : this.state.value,
+            "change" : false
+          })
+        } else {
+          console.log('User logged out')
+        }
+      }.bind(this));
+    }
   }
   onchange(code){
-    localStorage.value = code
     firebase.database().ref().child('users/'+localStorage.uid+'/value').set(code)
     this.setState({ value : code })
   }
