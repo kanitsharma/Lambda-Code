@@ -9,6 +9,9 @@ Powerful and lightweight javascript code editor with the functionality of execut
 #### Themes
 #### Code Execution
 #### Mobile Support
+#### Features ES6 Support
+#### Real Time Data Sharing
+#### firebase<3
 
 ## Support for other languages also coming soon... :)
 
