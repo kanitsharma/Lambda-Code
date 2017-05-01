@@ -29,6 +29,7 @@ const Toolbar=props => {
           <option value="tomorrow">Tomorrow</option>
           <option value="solarized_dark">Solarized Dark</option>
           <option value="solarized_light">Solarized Light</option>
+          <option value="vibrant_ink">Vibrant Ink</option>
         </select>
       </div>
 

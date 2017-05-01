@@ -16,6 +16,7 @@ import 'brace/theme/terminal';
 import 'brace/theme/tomorrow';
 import 'brace/theme/solarized_dark';
 import 'brace/theme/solarized_light';
+import 'brace/theme/vibrant_ink';
 
 const Editor=props => {
   const empty = () => {

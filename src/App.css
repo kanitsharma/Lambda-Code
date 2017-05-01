@@ -11,6 +11,7 @@
     font-size: 18px !important;
   }
 }
+
 @media only screen and (max-width: 420px) {
   .ace_editor{
     font-size: 16px !important;
@@ -96,6 +97,16 @@
 .row{
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (max-width : 580px) {
+  .row{
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .f1{
   font-family: 'Love Ya Like A Sister', cursive;
