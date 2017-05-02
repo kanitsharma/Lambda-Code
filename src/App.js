@@ -80,6 +80,7 @@ class App extends Component {
   }
   reset(){
     this.setState({ show:true })
+    localStorage.removeItem('uid')
     localStorage.uid=localStorage.prevuid
     this.update()
   }
