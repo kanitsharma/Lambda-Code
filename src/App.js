@@ -12,7 +12,7 @@ class App extends Component {
     super(props)
     this.state = {
       value:"/*Enter Your Javascript Code. \nUse functions like alert,prompt or console.log to check the outputs. \nClick the Execute Button to execute your code. \nCheck gutter for linting. \nYour code will be automatically transpiled to es5 when you execute it. \nYour will be synchronized to the realtime database \nPlease wait for the code to load \nClick share to generate unique id and share it to friends to access real time data sharing and \nEnter the unique id to start synchronizing code \nClick Stop to stop sharing data online*/",
-      theme:"merbivore",
+      theme:"ambiance",
       change:true,
       show:true,
       test:false
@@ -39,17 +39,17 @@ class App extends Component {
   statechange(){
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-        localStorage.puid = user.uid
+        localStorage.xuid = user.uid
         if(localStorage.index==1){
           firebase.database().ref().child('users/'+user.uid).set({
             "value" : this.state.value,
             "change" : false
           })
-        }else if(localStorage.index==3){
-          console.log(localStorage.index);
+          localStorage.removeItem('index')
         }
         else{
           localStorage.index++
+          console.log('incremented');
         }
       }
       else {
@@ -58,7 +58,7 @@ class App extends Component {
     }.bind(this));
   }
   login(){
-    if(!localStorage.puid){
+    if(!localStorage.xuid){
       firebase.auth().signInAnonymously().catch(function(error) {
         if(error) console.log(error.message)
       })
@@ -66,11 +66,12 @@ class App extends Component {
     }
     else{
       this.update()
+      console.log("updating");
     }
   }
   update(){
-    if(localStorage.puid){
-      firebase.database().ref().child('users/'+localStorage.puid).on('value' , snap => {
+    if(localStorage.xuid){
+      firebase.database().ref().child('users/'+localStorage.xuid).on('value' , snap => {
         this.setState({ value : snap.val().value , change : snap.val().change })
       })
     }
@@ -81,20 +82,19 @@ class App extends Component {
   }
   realtime(key){
     this.setState({ show : false })
-    localStorage.removeItem('puid')
-    localStorage.puid=key
+    localStorage.removeItem('xuid')
+    localStorage.xuid=key
     this.update()
   }
   reset(){
     this.setState({ show:true })
     var user = firebase.auth().currentUser
-    localStorage.removeItem('puid')
-    localStorage.puid=user.uid
-    localStorage.index++
+    localStorage.removeItem('xuid')
+    localStorage.xuid=user.uid
     location.reload()
   }
   onchange(code){
-    firebase.database().ref().child('users/'+localStorage.puid+'/value').set(code)
+    firebase.database().ref().child('users/'+localStorage.xuid+'/value').set(code)
     this.setState({ value : code })
   }
   transpile(value , callback){
