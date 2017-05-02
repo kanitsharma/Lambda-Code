@@ -11,6 +11,7 @@ Powerful and lightweight javascript code editor with the functionality of execut
 #### Mobile Support
 #### Features ES6 Support
 #### Real Time Data Sharing
+#### Secure
 #### firebase<3
 
 ## Support for other languages also coming soon... :)

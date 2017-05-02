@@ -11,7 +11,7 @@ var config = {
   projectId: "lambda-code-bcb9a",
   storageBucket: "lambda-code-bcb9a.appspot.com",
   messagingSenderId: "422976253303"
-};
+}
 firebase.initializeApp(config);
 
 ReactDOM.render(
