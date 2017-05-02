@@ -39,7 +39,7 @@ class App extends Component {
   statechange(){
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-        localStorage.uid = user.uid
+        localStorage.puid = user.uid
         if(localStorage.index==1){
           firebase.database().ref().child('users/'+user.uid).set({
             "value" : this.state.value,
@@ -58,7 +58,7 @@ class App extends Component {
     }.bind(this));
   }
   login(){
-    if(!localStorage.uid){
+    if(!localStorage.puid){
       firebase.auth().signInAnonymously().catch(function(error) {
         if(error) console.log(error.message)
       })
@@ -66,12 +66,11 @@ class App extends Component {
     }
     else{
       this.update()
-      console.log("updating");
     }
   }
   update(){
-    if(localStorage.uid){
-      firebase.database().ref().child('users/'+localStorage.uid).on('value' , snap => {
+    if(localStorage.puid){
+      firebase.database().ref().child('users/'+localStorage.puid).on('value' , snap => {
         this.setState({ value : snap.val().value , change : snap.val().change })
       })
     }
@@ -82,20 +81,20 @@ class App extends Component {
   }
   realtime(key){
     this.setState({ show : false })
-    localStorage.removeItem('uid')
-    localStorage.uid=key
+    localStorage.removeItem('puid')
+    localStorage.puid=key
     this.update()
   }
   reset(){
     this.setState({ show:true })
     var user = firebase.auth().currentUser
-    localStorage.removeItem('uid')
-    localStorage.uid=user.uid
+    localStorage.removeItem('puid')
+    localStorage.puid=user.uid
     localStorage.index++
     location.reload()
   }
   onchange(code){
-    firebase.database().ref().child('users/'+localStorage.uid+'/value').set(code)
+    firebase.database().ref().child('users/'+localStorage.puid+'/value').set(code)
     this.setState({ value : code })
   }
   transpile(value , callback){
