@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Toolbar from './components/toolbar';
 import Editor from './components/editor';
 import Footer from './components/footer';
+import Popup from './components/popup';
 import * as firebase from 'firebase';
+import 'js-beautify';
 import './App.css';
 
 
@@ -11,12 +13,14 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      value:"/*Enter Your Javascript Code. \nUse functions like alert,prompt or console.log to check the outputs. \nClick the Execute Button to execute your code. \nCheck gutter for linting. \nYour code will be automatically transpiled to es5 when you execute it. \nYour will be synchronized to the realtime database \nPlease wait for the code to load \nClick share to generate unique id and share it to friends to access real time data sharing and \nEnter the unique id to start synchronizing code \nClick Stop to stop sharing data online*/",
-      theme:"ambiance",
+      value:"/*Welcome To Lambda Code\nPowerful and lightweight javascript IDE.\nCTRL-Enter to execute code (Windows) and Cmd-Enter (Mac)\nCTRL-b || Cmd-b to beautify code \nUse functions like alert,prompt or console.log to check the outputs. \n<- <-Check gutter for linting. \nYour code will automatically be transpiled to es5 when you execute it. \nYour will be saved to the realtime database and reload when you reopen the tab\nClick share to generate unique id and share it to friends to access real time data sharing.\nEnter the unique id to start synchronizing code \nClick Stop to stop sharing data online*/",
+      theme:"merbivore",
       change:true,
       show:true,
-      test:false
+      test:false,
+      popshow:false,
     }
+    this.closepop = this.closepop.bind(this)
     this.onchange = this.onchange.bind(this)
     this.execute = this.execute.bind(this)
     this.changetheme = this.changetheme.bind(this)
@@ -29,6 +33,7 @@ class App extends Component {
     this.reset = this.reset.bind(this)
     this.login = this.login.bind(this)
     this.statechange = this.statechange.bind(this)
+    this.beautifier = this.beautifier.bind(this)
   }
   componentWillMount(){
     this.login()
@@ -49,7 +54,6 @@ class App extends Component {
         }
         else{
           localStorage.index++
-          console.log('incremented');
         }
       }
       else {
@@ -66,7 +70,6 @@ class App extends Component {
     }
     else{
       this.update()
-      console.log("updating");
     }
   }
   update(){
@@ -77,7 +80,7 @@ class App extends Component {
     }
   }
   share(){
-    alert(`Share this ${firebase.auth().currentUser.uid}`)
+    this.setState({ popshow : true })
     this.update()
   }
   realtime(key){
@@ -98,13 +101,20 @@ class App extends Component {
     this.setState({ value : code })
   }
   transpile(value , callback){
+    const beautify = require('js-beautify').js_beautify
     let code = window.Babel.transform(value, {presets:['es2015']}).code
-    callback(code)
+    let bcode = beautify(code)
+    firebase.database().ref().child('users/'+localStorage.xuid+'/value').set(bcode)
+    callback(bcode)
   }
   execute(){
     this.transpile(this.state.value, (code) => {
         this.setState({ value : code } , this.evalit)
     })
+  }
+  beautifier(){
+    const beautify = require('js-beautify').js_beautify
+    this.setState( { value : beautify(this.state.value) } )
   }
   evalit = (code = this.state) => {
     setTimeout(()=>{
@@ -113,6 +123,9 @@ class App extends Component {
   }
   changetheme(value){
     this.setState({ theme : value })
+  }
+  closepop(){
+    this.setState({ popshow : false })
   }
   empty(){
     if(this.state.change === true){
@@ -124,11 +137,12 @@ class App extends Component {
     return (
         <div className="container">
           <Toolbar changetheme={this.changetheme}/>
+          {this.state.popshow===true && <Popup uid={localStorage.xuid} closepop={this.closepop}/>}
           <div className="center">
-            <Editor value={this.state.value} onchange={this.onchange} theme={this.state.theme} empty={this.empty}/>
+            <Editor value={this.state.value} onchange={this.onchange} theme={this.state.theme} empty={this.empty} beautifier={this.beautifier} execute={this.execute}/>
           </div>
           <div >
-            <Footer execute={this.execute} share={this.share} realtime={this.realtime} reset={this.reset} show={this.state.show}/>
+          <Footer share={this.share} popshow={this.state.popshow} realtime={this.realtime} reset={this.reset} show={this.state.show}/>
           </div>
         </div>
     );

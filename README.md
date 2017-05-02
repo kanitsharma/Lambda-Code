@@ -1,12 +1,13 @@
 # Lambda Code
 
-Powerful and lightweight javascript code editor with the functionality of executing the code in browser itself.
+Powerful and lightweight online javascript IDE packed with features like Code execution , beautifier , Real time code sharing
 
 ## Features
 
 #### Lightweight
 #### Autocomplete
 #### Themes
+#### Beautify
 #### Code Execution
 #### Mobile Support
 #### Features ES6 Support

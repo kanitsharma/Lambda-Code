@@ -15,8 +15,8 @@ const Toolbar=props => {
 
       <div>
         <select className="picker" onChange={theme} id="select">
-          <option value="ambiance">Ambiance</option>
           <option value="merbivore" >Merbivore</option>
+          <option value="ambiance">Ambiance</option>
           <option value="chaos">Chaos</option>
           <option value="monokai">Monokai</option>
           <option value="cobalt">Cobalt</option>

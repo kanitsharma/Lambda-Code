@@ -33,9 +33,33 @@ const Editor=props => {
       onChange={props.onchange}
       enableLiveAutocompletion={true}
       enableBasicAutocompletion={true}
-      editorProps={{$blockScrolling: true}}
+      editorProps={{$blockScrolling: Infinity}}
       wrapEnabled={true}
       onFocus={empty}
+      onLoad={(editor) => {
+        editor.commands.addCommand({
+          name: "beautify",
+          bindKey: {
+              sender:     /editor.+|cli/,
+              mac:        "Command-b",
+              win:        "Ctrl-b"
+          },
+          exec: function() {
+            props.beautifier()
+          }
+        })
+        editor.commands.addCommand({
+          name: "execute",
+          bindKey: {
+              sender:     /editor.+|cli/,
+              mac:        "Command-Enter",
+              win:        "Ctrl-Enter"
+          },
+          exec: function() {
+            props.execute()
+          }
+        })
+      }}
     />
   )
 }
