@@ -28,7 +28,11 @@ class App extends Component {
     this.reset = this.reset.bind(this)
   }
   componentWillMount(){
-    this.update()
+    if(!localStorage){
+      firebase.auth().signInAnonymously().catch(function(error) {
+        if(error) console.log(error.message)
+      })
+    }
   }
   componentDidMount(){
     if(!localStorage.uid){
@@ -47,6 +51,7 @@ class App extends Component {
         }
       }.bind(this));
     }
+    this.update()
   }
   update(){
     if(localStorage.uid){
@@ -56,12 +61,13 @@ class App extends Component {
     }
   }
   share(){
-    alert(`Share this ${localStorage.uid}`)
+    alert(`Share this ${firebase.auth().currentUser.uid}`)
+    this.setState({ show : false })
     this.update()
   }
   realtime(key){
     this.setState({ show : false })
-    localStorage.prevuid = localStorage.uid
+    localStorage.removeItem('uid')
     localStorage.uid=key
     this.update()
   }
@@ -80,9 +86,11 @@ class App extends Component {
   }
   reset(){
     this.setState({ show:true })
-    localStorage.removeItem('uid')
-    localStorage.uid=localStorage.prevuid
+    var user = firebase.auth().currentUser
+    localStorage.uid=user.uid
     this.update()
+    localStorage.removeItem('uid')
+    localStorage.uid=user.id
   }
   evalit = (code = this.state) => {
     setTimeout(()=>{
