@@ -62,7 +62,6 @@ class App extends Component {
   }
   share(){
     alert(`Share this ${firebase.auth().currentUser.uid}`)
-    this.setState({ show : false })
     this.update()
   }
   realtime(key){
