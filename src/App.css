@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister');
-@import url('https://fonts.googleapis.com/css?family=Bitter');
 .container{
   display: flex;
   flex-flow: column;
@@ -24,16 +23,45 @@
     font-size: 15px !important;
   }
 }
+@media only screen and (max-width: 850px){
+  .centert{
+    display: none !important;
+  }
+}
+.centert{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  font-size: 10px;
+  font-family: monospace;
+  white-space:nowrap;
+  overflow: hidden;
+  width: 65em;
+  animation: type 6s steps(50, end) 1;
+}
+@keyframes type{
+	from{ width: 0;}
+}
+.centert span{
+  font-size: 25px;
+  color: black;
+
+	animation: blink 1s infinite;
+}
+
+@keyframes blink{
+	to{ opacity: .0;}
+}
+
 .nav{
   font-family: 'Love Ya Like A Sister', cursive;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 }
 .pull-right{
   display: flex;
-  margin-right: auto;
   flex-direction: row;
   align-items: center;
 }
@@ -137,10 +165,19 @@
     font-size: 15px !important;
   }
 }
+.center{
+
+}
 @media only screen and (max-width : 410px) {
   .popup{
     left: 20%;
     width: 60% !important;
+    font-size: 12px !important;
+  }
+  .uid{
+    font-size: 10px !important;
+  }
+  .but{
     font-size: 12px !important;
   }
 }
@@ -168,12 +205,33 @@
     align-items: center;
   }
 }
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 200ms ease-in;
+}
+
 .f1{
   font-family: 'Love Ya Like A Sister', cursive;
   font-size: 22px;
 }
 .overlay{
-  font-family: 'Bitter', serif !important;
+  top : 0;
+  left: 0;
+  font-weight: bold;
+  font-family: 'Arial', serif !important;
   min-height: 100%;
   overflow: auto;
   width: 100%;
@@ -182,5 +240,5 @@
   z-index: 500;
 }
 .uid{
-  text-decoration: underline;
+  font-family: 'Lucida Console',monospace;
 }

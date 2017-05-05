@@ -1,5 +1,5 @@
 import React from 'react';
-import Heart from './heart.png'
+import tag from './heart.png'
 
 const Footer = props => {
   const handle = (e) => {
@@ -23,9 +23,9 @@ const Footer = props => {
         }
       </div>
       <div className="footer">
-        <img src={Heart} height="50" width="50" alt="Functional Programmer"/>
+        <img src={tag} height="100" width="100" alt="Functional Programmer"/>
         <p className="f1"> Made By Kanit Sharma </p>
-        <img src={Heart} height="50" width="50" alt="Functional Programmer"/>
+        <img src={tag} height="100" width="100" alt="Functional Programmer"/>
       </div>
     </div>
   )

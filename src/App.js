@@ -7,6 +7,7 @@ import * as firebase from 'firebase';
 import 'js-beautify';
 import './App.css';
 import * as babel from 'babel-standalone';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 class App extends Component {
@@ -138,7 +139,13 @@ class App extends Component {
     return (
         <div className="container">
           <Toolbar changetheme={this.changetheme}/>
-          {this.state.popshow===true && <Popup uid={localStorage.xuid} closepop={this.closepop}/>}
+          <ReactCSSTransitionGroup
+            transitionName="example"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}
+            >
+            {this.state.popshow===true && <Popup uid={localStorage.xuid} closepop={this.closepop}/>}
+          </ReactCSSTransitionGroup>
           <div className="center">
             <Editor value={this.state.value} onchange={this.onchange} theme={this.state.theme} empty={this.empty} beautifier={this.beautifier} execute={this.execute}/>
           </div>

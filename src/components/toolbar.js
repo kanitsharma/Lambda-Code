@@ -13,6 +13,8 @@ const Toolbar=props => {
         <p> Lambda Code </p>
       </div>
 
+      <div className="centert"><h1>"Programming is usually taught by examples" -Niklaus Wirth</h1><span>|</span></div>
+
       <div>
         <select className="picker" onChange={theme} id="select">
           <option value="merbivore" >Merbivore</option>

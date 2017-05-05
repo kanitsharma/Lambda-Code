@@ -10,6 +10,7 @@
     "js-beautify": "^1.6.12",
     "react": "^15.5.4",
     "react-ace": "^4.2.1",
+    "react-addons-css-transition-group": "^15.5.2",
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
