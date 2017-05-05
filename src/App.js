@@ -6,6 +6,7 @@ import Popup from './components/popup';
 import * as firebase from 'firebase';
 import 'js-beautify';
 import './App.css';
+import * as babel from 'babel-standalone';
 
 
 class App extends Component {
@@ -102,7 +103,7 @@ class App extends Component {
   }
   transpile(value , callback){
     const beautify = require('js-beautify').js_beautify
-    let code = window.Babel.transform(value, {presets:['es2015']}).code
+    let code = babel.transform(value, {presets:['es2015']}).code
     let bcode = beautify(code)
     firebase.database().ref().child('users/'+localStorage.xuid+'/value').set(bcode)
     callback(bcode)

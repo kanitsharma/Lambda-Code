@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://kanitsharma.github.io/Lambda-Code",
   "dependencies": {
+    "babel-standalone": "^6.24.0",
     "brace": "^0.10.0",
     "firebase": "^3.9.0",
     "js-beautify": "^1.6.12",
