@@ -15,7 +15,7 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      value:"/*Welcome To Lambda Code\nPowerful and lightweight javascript IDE.\nCTRL-Enter to execute code (Windows) and Cmd-Enter (Mac)\nCTRL-b || Cmd-b to beautify code \nUse functions like alert,prompt or console.log to check the outputs. \n<- <-Check gutter for linting. \nYour code will automatically be transpiled to es5 when you execute it. \nYour will be saved to the realtime database and reload when you reopen the tab\nClick share to generate unique id and share it to friends to access real time data sharing.\nEnter the unique id to start synchronizing code \nClick Stop to stop sharing data online*/",
+      value:"/*Welcome To Lambda Code\nPowerful and lightweight javascript IDE.\nCTRL-Enter to execute code (Windows) and Cmd-Enter (Mac)\nCTRL-b || Cmd-b to beautify code \nUse functions like alert,prompt or console.log to check the outputs. \n<- <-Check gutter for linting. \nYour code will automatically be transpiled to es5 when you execute it. \nYour code will be saved to the realtime database and reloaded when you reopen the tab\nClick share to generate unique id and share it with your friends to access real time data sharing.\nEnter the unique id to start synchronizing code \nClick Stop to stop sharing data online*/",
       theme:"merbivore",
       change:true,
       show:true,
