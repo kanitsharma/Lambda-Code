@@ -13,6 +13,7 @@ const Footer = props => {
         <p className="f1"> Connect To Friend </p>
       </div>
       <div className="row">
+        <button onClick={() => props.execute()} >Execute</button>
         <button onClick={props.share} >Share</button>
         {props.show?
           (<form action="#" onSubmit={handle}>

@@ -150,7 +150,7 @@ class App extends Component {
             <Editor value={this.state.value} onchange={this.onchange} theme={this.state.theme} empty={this.empty} beautifier={this.beautifier} execute={this.execute}/>
           </div>
           <div >
-          <Footer share={this.share} popshow={this.state.popshow} realtime={this.realtime} reset={this.reset} show={this.state.show}/>
+          <Footer execute={this.execute} share={this.share} popshow={this.state.popshow} realtime={this.realtime} reset={this.reset} show={this.state.show}/>
           </div>
         </div>
     );
